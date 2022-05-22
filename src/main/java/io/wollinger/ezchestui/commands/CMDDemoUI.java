@@ -37,7 +37,14 @@ public class CMDDemoUI implements CommandExecutor {
         headItem.setLore("Line 1!\n" + ChatColor.WHITE + "Line 2!\nLine 3!");
         headItem.setClickFunction(() -> sender.sendMessage("Cool!"));
 
+        EzUIItem funkyDirt = new EzUIItem(ItemUtils.getStack(Material.DIRT));
+        funkyDirt.setName("FUNKY dirt!");
+        funkyDirt.setLore("Note: Do not consume.");
+        funkyDirt.setClickFunction(() -> sender.sendMessage("Munch munch..."));
+        funkyDirt.setCloseOnClick(false);
+
         inv.setItem(0, headItem);
+        inv.setItem(10, funkyDirt);
 
         UIManager.openInventory((Player) sender, inv);
 
