@@ -16,4 +16,8 @@ public class ItemUtils {
         item.setItemMeta(skull);
         return item;
     }
+
+    public static ItemStack getStack(Material material) {
+        return new ItemStack(material);
+    }
 }

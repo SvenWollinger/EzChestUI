@@ -6,8 +6,8 @@ import org.bukkit.inventory.Inventory;
 import java.util.HashMap;
 
 public class EzUI {
-    private Inventory inv;
-    private HashMap<Integer, EzUIItem> items = new HashMap<>();
+    private final Inventory inv;
+    private final HashMap<Integer, EzUIItem> items = new HashMap<>();
 
     public EzUI(String title, int size) {
         inv = Bukkit.createInventory(null, size, title);
