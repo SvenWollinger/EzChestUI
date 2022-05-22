@@ -16,15 +16,4 @@ public class ItemUtils {
         item.setItemMeta(skull);
         return item;
     }
-
-    public static ItemStack setInfo(ItemStack item, String name, List<String> desc) {
-        ItemMeta meta = item.getItemMeta();
-
-        if(name != null && !name.isEmpty())
-            meta.setDisplayName(ChatColor.WHITE + name);
-        if(desc != null && !desc.isEmpty())
-            meta.setLore(desc);
-        item.setItemMeta(meta);
-        return item;
-    }
 }
