@@ -1,0 +1,5 @@
+name: EzChestUI
+version: 0.1
+author: Sven Wollinger
+main: io.wollinger.ezchestui.EzChestUI
+api-version: 1.18
