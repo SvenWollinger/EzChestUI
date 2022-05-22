@@ -4,11 +4,9 @@ import io.wollinger.ezchestui.commands.CMDDemoUI;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class EzChestUI extends JavaPlugin {
     private static EzChestUI instance;
-    private static Logger logger;
 
     @Override
     public void onEnable() {

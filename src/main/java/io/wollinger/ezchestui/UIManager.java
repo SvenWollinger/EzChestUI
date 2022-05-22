@@ -14,7 +14,7 @@ import java.util.logging.Level;
 public class UIManager implements Listener {
     private static UIManager instance;
 
-    private static HashMap<Inventory, EzUI> openInventories = new HashMap<>();
+    private static final HashMap<Inventory, EzUI> openInventories = new HashMap<>();
 
     public static void init(EzChestUI plugin) {
         if (instance == null) {
