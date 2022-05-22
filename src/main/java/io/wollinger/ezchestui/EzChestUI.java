@@ -1,5 +1,6 @@
 package io.wollinger.ezchestui;
 
+import io.wollinger.ezchestui.commands.CMDDemoUI;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Level;

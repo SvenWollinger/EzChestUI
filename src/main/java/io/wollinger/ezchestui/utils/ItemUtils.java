@@ -1,4 +1,4 @@
-package io.wollinger.ezchestui;
+package io.wollinger.ezchestui.utils;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
