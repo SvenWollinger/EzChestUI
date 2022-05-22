@@ -4,6 +4,7 @@ import io.wollinger.ezchestui.uiparts.EzUI;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 
@@ -38,6 +39,17 @@ public class UIManager implements Listener {
     public static void openInventory(Player player, EzUI ui) {
         player.openInventory(ui.getInventory());
         openInventories.put(ui.getInventory(), ui);
+    }
+
+    @EventHandler
+    public void onInventoryClick(InventoryClickEvent event) {
+        if(openInventories.containsKey(event.getInventory())) {
+            //This cancels bottom inventory clicks too, we dont care though. Too much work :^)
+            event.setCancelled(true);
+
+            EzUI ui = openInventories.get(event.getInventory());
+            ui.getFromSlot(event.getSlot()).runClickFunction(event.getWhoClicked());
+        }
     }
 
     @EventHandler

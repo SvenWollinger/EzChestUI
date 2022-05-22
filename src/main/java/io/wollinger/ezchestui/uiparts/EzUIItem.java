@@ -1,6 +1,8 @@
 package io.wollinger.ezchestui.uiparts;
 
 import org.bukkit.ChatColor;
+import org.bukkit.entity.HumanEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -10,6 +12,7 @@ import java.util.List;
 public class EzUIItem {
     private ItemStack itemStack;
     private ClickFunction function;
+    private boolean closeOnClick = true;
 
     public EzUIItem(ItemStack itemStack) {
         this.itemStack = itemStack;
@@ -50,7 +53,13 @@ public class EzUIItem {
         this.function = function;
     }
 
-    public void runClickFunction() {
+    public void setCloseOnClick(boolean bool) {
+        this.closeOnClick = bool;
+    }
+
+    public void runClickFunction(HumanEntity p) {
         function.run();
+        if(closeOnClick)
+            p.closeInventory();
     }
 }
