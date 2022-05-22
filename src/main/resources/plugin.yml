@@ -3,3 +3,8 @@ version: 0.1
 author: Sven Wollinger
 main: io.wollinger.ezchestui.EzChestUI
 api-version: 1.18
+commands:
+  demoui:
+    description: Open a demo ui
+    usage: /<command>
+    permission: ezchestui.demoui
