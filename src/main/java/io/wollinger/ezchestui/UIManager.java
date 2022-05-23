@@ -64,11 +64,17 @@ public class UIManager implements Listener {
 
     @EventHandler
     public void onInventoryDrag(InventoryDragEvent event) {
-        System.out.println("Dragged");
-        /*if(openInventories.containsKey(event.get())) {
-            EzChestUI.log("Dragged", Level.INFO);
-            event.setCancelled(true);
-        }*/
+        if(openInventories.containsKey(event.getInventory())) {
+            boolean cancel = false;
+            int size = event.getInventory().getSize();
+            for(Integer i : event.getRawSlots()) {
+                if(i < size) {
+                    cancel = true;
+                    break;
+                }
+            }
+            event.setCancelled(cancel);
+        }
     }
 
     @EventHandler
