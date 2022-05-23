@@ -33,9 +33,9 @@ public class EzUI {
         inv.setItem(slot, item);
     }
 
-    public void executeItem(ItemStack item, HumanEntity user, InventoryClickEvent event) {
+    public boolean executeItem(ItemStack item, HumanEntity user, InventoryClickEvent event) {
         if(item == null || !ItemUtils.isEzUIItem(item))
-            return;
+            return false;
 
         event.setCancelled(true);
 
@@ -49,6 +49,8 @@ public class EzUI {
             user.closeInventory();
             ItemUtils.clearAllKeys(item);
         }
+
+        return true;
     }
 
     public Inventory getInventory() {

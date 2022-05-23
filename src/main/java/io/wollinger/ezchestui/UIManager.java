@@ -4,8 +4,7 @@ import io.wollinger.ezchestui.uiparts.EzUI;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.*;
 import org.bukkit.inventory.Inventory;
 
 import java.util.HashMap;
@@ -43,10 +42,33 @@ public class UIManager implements Listener {
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
+        Inventory clickedInventory = event.getClickedInventory();
+        if(clickedInventory == null)
+            return;
+
         if(openInventories.containsKey(event.getInventory())) {
+            boolean isShiftClick = event.getClick() == ClickType.SHIFT_LEFT || event.getClick() == ClickType.SHIFT_RIGHT;
+            boolean isPlayerInv = clickedInventory.getType() == InventoryType.PLAYER;
+
+            if(isPlayerInv && isShiftClick) {
+                event.setCancelled(true);
+                return;
+            }
+
             EzUI ui = openInventories.get(event.getInventory());
-            ui.executeItem(event.getCurrentItem(), event.getWhoClicked(), event);
+            boolean success = ui.executeItem(event.getCurrentItem(), event.getWhoClicked(), event);
+            if(!success && !isPlayerInv)
+                event.setCancelled(true);
         }
+    }
+
+    @EventHandler
+    public void onInventoryDrag(InventoryDragEvent event) {
+        System.out.println("Dragged");
+        /*if(openInventories.containsKey(event.get())) {
+            EzChestUI.log("Dragged", Level.INFO);
+            event.setCancelled(true);
+        }*/
     }
 
     @EventHandler
