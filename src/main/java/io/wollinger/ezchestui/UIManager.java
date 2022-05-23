@@ -43,23 +43,21 @@ public class UIManager implements Listener {
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
         Inventory clickedInventory = event.getClickedInventory();
-        if(clickedInventory == null)
+        if(clickedInventory == null || openInventories.containsKey(event.getInventory()))
             return;
 
-        if(openInventories.containsKey(event.getInventory())) {
-            boolean isShiftClick = event.getClick() == ClickType.SHIFT_LEFT || event.getClick() == ClickType.SHIFT_RIGHT;
-            boolean isPlayerInv = clickedInventory.getType() == InventoryType.PLAYER;
+        boolean isShiftClick = event.getClick() == ClickType.SHIFT_LEFT || event.getClick() == ClickType.SHIFT_RIGHT;
+        boolean isPlayerInv = clickedInventory.getType() == InventoryType.PLAYER;
 
-            if(isPlayerInv && isShiftClick) {
-                event.setCancelled(true);
-                return;
-            }
-
-            EzUI ui = openInventories.get(event.getInventory());
-            boolean success = ui.executeItem(event.getCurrentItem(), event.getWhoClicked(), event);
-            if(!success && !isPlayerInv)
-                event.setCancelled(true);
+        if(isPlayerInv && isShiftClick) {
+            event.setCancelled(true);
+            return;
         }
+
+        EzUI ui = openInventories.get(event.getInventory());
+        boolean success = ui.executeItem(event.getCurrentItem(), event.getWhoClicked(), event);
+        if(!success && !isPlayerInv)
+            event.setCancelled(true);
     }
 
     @EventHandler
