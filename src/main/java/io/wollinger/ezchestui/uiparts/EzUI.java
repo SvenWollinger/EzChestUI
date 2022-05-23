@@ -45,10 +45,8 @@ public class EzUI {
         if(function != null)
             function.run();
 
-        if(ItemUtils.isCloseOnClick(item)) {
+        if(ItemUtils.isCloseOnClick(item))
             user.closeInventory();
-            ItemUtils.clearAllKeys(item);
-        }
 
         return true;
     }
