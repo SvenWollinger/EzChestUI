@@ -19,4 +19,8 @@ public class EzChestUI extends JavaPlugin {
         instance.getLogger().log(level, message);
     }
 
+    public static EzChestUI getPluginInstance() {
+        return instance;
+    }
+
 }
