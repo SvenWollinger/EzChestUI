@@ -44,11 +44,8 @@ public class UIManager implements Listener {
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
         if(openInventories.containsKey(event.getInventory())) {
-            //This cancels bottom inventory clicks too, we dont care though. Too much work :^)
-            event.setCancelled(true);
-
             EzUI ui = openInventories.get(event.getInventory());
-            ui.getFromSlot(event.getSlot()).runClickFunction(event.getWhoClicked());
+            ui.executeItem(event.getCurrentItem(), event.getWhoClicked(), event);
         }
     }
 

@@ -39,6 +39,7 @@ public class ItemUtils {
             c.set(FUNC_KEY, PersistentDataType.STRING, key);
         else
             c.remove(FUNC_KEY);
+        item.setItemMeta(meta);
     }
 
     public static String getEzUIFunction(ItemStack item) {
@@ -56,7 +57,11 @@ public class ItemUtils {
     }
 
     public static boolean isEzUIItem(ItemStack item) {
-        return item.getItemMeta().getPersistentDataContainer().has(ITEM_KEY, PersistentDataType.INTEGER);
+        ItemMeta meta = item.getItemMeta();
+        if(meta == null)
+            return false;
+
+        return meta.getPersistentDataContainer().has(ITEM_KEY, PersistentDataType.INTEGER);
     }
 
     public static void setCloseOnClick(ItemStack item, boolean closeOnClick) {
