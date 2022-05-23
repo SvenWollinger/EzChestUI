@@ -1,20 +1,28 @@
 package io.wollinger.ezchestui.uiparts;
 
+import io.wollinger.ezchestui.EzChestUI;
 import org.bukkit.ChatColor;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataType;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class EzUIItem {
+    public static final NamespacedKey ITEM_KEY = new NamespacedKey(EzChestUI.getPluginInstance(), "ui-item");
+
     private ItemStack itemStack;
     private ClickFunction function;
     private boolean closeOnClick = true;
 
     public EzUIItem(ItemStack itemStack) {
         this.itemStack = itemStack;
+        ItemMeta meta = itemStack.getItemMeta();
+        meta.getPersistentDataContainer().set(ITEM_KEY, PersistentDataType.INTEGER, 0);
+        itemStack.setItemMeta(meta);
     }
 
     public void setName(String name) {
