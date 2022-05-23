@@ -43,7 +43,7 @@ public class UIManager implements Listener {
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
         Inventory clickedInventory = event.getClickedInventory();
-        if(clickedInventory == null || openInventories.containsKey(event.getInventory()))
+        if(clickedInventory == null || !openInventories.containsKey(event.getInventory()))
             return;
 
         boolean isShiftClick = event.getClick() == ClickType.SHIFT_LEFT || event.getClick() == ClickType.SHIFT_RIGHT;
